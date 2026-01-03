@@ -2,4 +2,4 @@ import streamlit as st
 
 st.write("Hello, *World!* :sunglasses:")
 
-st.image("sunrise.jpg", caption="Sunrise by the mountains")
+st.image("Methylene Blue dengan UV tanpa ZnO.png", caption="Sunrise by the mountains")
