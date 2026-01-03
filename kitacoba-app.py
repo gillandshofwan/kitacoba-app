@@ -2,5 +2,15 @@ import streamlit as st
 
 st.write("Hello, *World!* :sunglasses:")
 
-import streamlit as st
-st.image("C:\Users\HYPE AMD\Pictures\Screenshots\Screenshot 2025-10-09 142547.png", caption="Sunrise by the mountains")
+# Using object notation
+add_selectbox = st.sidebar.selectbox(
+    "How would you like to be contacted?",
+    ("Email", "Home phone", "Mobile phone")
+)
+
+# Using "with" notation
+with st.sidebar:
+    add_radio = st.radio(
+        "Choose a shipping method",
+        ("Standard (5-15 days)", "Express (2-5 days)")
+    )
