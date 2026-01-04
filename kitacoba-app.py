@@ -4,74 +4,96 @@ st.write("Hello, *World!* :sunglasses:")
 
 import streamlit as st
 
+import streamlit as st
+
 # ==============================
-# FUNGSI PILIHAN 1
+# INISIALISASI STATE HALAMAN
 # ==============================
-def kalkulator_pilihan_1():
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+
+# ==============================
+# HALAMAN UTAMA / PEMBUKA
+# ==============================
+def halaman_utama():
+    st.title("👋 Selamat Datang")
+    st.write(
+        """
+        Selamat datang di **Website Kalkulator Laboratorium**.  
+        Silakan buka **sidebar** dan pilih menu kalkulator
+        yang ingin digunakan.
+        """
+    )
+    st.info("Gunakan menu di sidebar untuk memulai.")
+
+
+# ==============================
+# KALKULATOR PENGENCERAN
+# ==============================
+def kalkulator_pengenceran():
     st.header("Kalkulator Pengenceran")
-    st.write("Operasi: Penjumlahan & Pengurangan")
+    st.write("Contoh operasi sederhana")
 
     a = st.number_input("Masukkan angka pertama", key="p1_a")
     b = st.number_input("Masukkan angka kedua", key="p1_b")
 
-    col1, col2 = st.columns(2)
+    if st.button("Hitung Penjumlahan"):
+        st.success(f"Hasil: {a + b}")
 
-    with col1:
-        if st.button("Tambah", key="btn_tambah"):
-            hasil = a + b
-            st.success(f"Hasil penjumlahan: {hasil}")
-
-    with col2:
-        if st.button("Kurang", key="btn_kurang"):
-            hasil = a - b
-            st.success(f"Hasil pengurangan: {hasil}")
+    st.markdown("---")
+    if st.button("⬅️ Kembali ke Halaman Utama"):
+        st.session_state.page = "home"
+        st.rerun()
 
 
 # ==============================
-# FUNGSI PILIHAN 2
+# KALKULATOR PENIMBANGAN
 # ==============================
-def kalkulator_pilihan_2():
+def kalkulator_penimbangan():
     st.header("Kalkulator Penimbangan")
-    st.write("Operasi: Perkalian & Pembagian")
+    st.write("Contoh operasi sederhana")
 
     x = st.number_input("Masukkan angka pertama", key="p2_x")
     y = st.number_input("Masukkan angka kedua", key="p2_y")
 
-    col1, col2 = st.columns(2)
+    if st.button("Hitung Perkalian"):
+        st.success(f"Hasil: {x * y}")
 
-    with col1:
-        if st.button("Kali", key="btn_kali"):
-            hasil = x * y
-            st.success(f"Hasil perkalian: {hasil}")
-
-    with col2:
-        if st.button("Bagi", key="btn_bagi"):
-            if y != 0:
-                hasil = x / y
-                st.success(f"Hasil pembagian: {hasil}")
-            else:
-                st.error("Tidak bisa dibagi dengan nol!")
+    st.markdown("---")
+    if st.button("⬅️ Kembali ke Halaman Utama"):
+        st.session_state.page = "home"
+        st.rerun()
 
 
 # ==============================
 # SIDEBAR NAVIGASI
 # ==============================
-st.sidebar.title("Menu Perhitungan")
+st.sidebar.title("Menu")
 menu = st.sidebar.radio(
-    "Pilih perhitungan:",
-    ["pengenceran", "penimbangan"]
+    "Pilih Menu:",
+    ["Halaman Utama", "Pengenceran", "Penimbangan"]
 )
 
-# ==============================
-# KONTEN UTAMA
-# ==============================
-st.title("Kalkulator larutan")
+if menu == "Halaman Utama":
+    st.session_state.page = "home"
+elif menu == "Pengenceran":
+    st.session_state.page = "pengenceran"
+elif menu == "Penimbangan":
+    st.session_state.page = "penimbangan"
 
-if menu == "pengenceran":
-    kalkulator_pilihan_1()
 
-elif menu == "penimbangan":
-    kalkulator_pilihan_2()
+# ==============================
+# ROUTING HALAMAN
+# ==============================
+if st.session_state.page == "home":
+    halaman_utama()
+
+elif st.session_state.page == "pengenceran":
+    kalkulator_pengenceran()
+
+elif st.session_state.page == "penimbangan":
+    kalkulator_penimbangan()
 
 
 
