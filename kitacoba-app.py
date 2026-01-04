@@ -79,7 +79,7 @@ def kalkulator_penimbangan():
     st.header("⚖️ Kalkulator Penimbangan Larutan")
 
     A = st.number_input(
-        "Konsentrasi yang diinginkan (A) [M]",
+        "Konsentrasi yang diinginkan (A) [Molaritas]",
         min_value=0.0,
         format="%.4f"
     )
