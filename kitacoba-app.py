@@ -32,19 +32,45 @@ def halaman_utama():
 # KALKULATOR PENGENCERAN
 # ==============================
 def kalkulator_pengenceran():
-    st.header("Kalkulator Pengenceran")
-    st.write("Contoh operasi sederhana")
+    st.header("🧪 Kalkulator Pengenceran Larutan")
+    st.write("Perhitungan berdasarkan rumus: D = (B × C) / A")
 
-    a = st.number_input("Masukkan angka pertama", key="p1_a")
-    b = st.number_input("Masukkan angka kedua", key="p1_b")
+    A = st.number_input(
+        "Konsentrasi larutan induk (A)",
+        min_value=0.0,
+        format="%.4f"
+    )
 
-    if st.button("Hitung Penjumlahan"):
-        st.success(f"Hasil: {a + b}")
+    B = st.number_input(
+        "Konsentrasi setelah pengenceran (B)",
+        min_value=0.0,
+        format="%.4f"
+    )
+
+    C = st.number_input(
+        "Volume akhir setelah pengenceran (C) [mL]",
+        min_value=0.0,
+        format="%.2f"
+    )
+
+    if st.button("Hitung Volume Induk"):
+        if A == 0:
+            st.error("Konsentrasi larutan induk (A) tidak boleh nol.")
+        else:
+            D = (B * C) / A
+
+            st.success(f"Volume larutan induk yang harus dipipet (D): **{D:.4f} mL**")
+
+            st.info(
+                f"Ambil **{D:.4f} mL** larutan induk, "
+                f"kemudian tambahkan pelarut hingga volume akhir **{C:.2f} mL**."
+            )
 
     st.markdown("---")
     if st.button("⬅️ Kembali ke Halaman Utama"):
         st.session_state.page = "home"
         st.rerun()
+
 
 
 # ==============================
