@@ -33,7 +33,6 @@ def halaman_utama():
 # ==============================
 def kalkulator_pengenceran():
     st.header("🧪 Kalkulator Pengenceran Larutan")
-    st.write("Perhitungan berdasarkan rumus: D = (B × C) / A")
 
     A = st.number_input(
         "Konsentrasi larutan induk (A)",
@@ -78,7 +77,6 @@ def kalkulator_pengenceran():
 # ==============================
 def kalkulator_penimbangan():
     st.header("⚖️ Kalkulator Penimbangan Larutan")
-    st.write("Perhitungan berdasarkan rumus: D = A × B × C")
 
     A = st.number_input(
         "Konsentrasi yang diinginkan (A) [M]",
