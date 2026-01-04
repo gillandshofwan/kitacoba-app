@@ -77,19 +77,47 @@ def kalkulator_pengenceran():
 # KALKULATOR PENIMBANGAN
 # ==============================
 def kalkulator_penimbangan():
-    st.header("Kalkulator Penimbangan")
-    st.write("Contoh operasi sederhana")
+    st.header("⚖️ Kalkulator Penimbangan Larutan")
+    st.write("Perhitungan berdasarkan rumus: D = A × B × C")
 
-    x = st.number_input("Masukkan angka pertama", key="p2_x")
-    y = st.number_input("Masukkan angka kedua", key="p2_y")
+    A = st.number_input(
+        "Konsentrasi yang diinginkan (A) [M]",
+        min_value=0.0,
+        format="%.4f"
+    )
 
-    if st.button("Hitung Perkalian"):
-        st.success(f"Hasil: {x * y}")
+    B = st.number_input(
+        "Volume larutan yang akan dibuat (B) [Liter]",
+        min_value=0.0,
+        format="%.3f"
+    )
+
+    C = st.number_input(
+        "BM analit (C) [g/mol]",
+        min_value=0.0,
+        format="%.2f"
+    )
+
+    if st.button("Hitung Berat Analit"):
+        if A == 0 or B == 0 or C == 0:
+            st.error("Semua nilai harus lebih besar dari nol.")
+        else:
+            D = A * B * C
+
+            st.success(
+                f"Berat analit yang harus ditimbang (D): **{D:.4f} gram**"
+            )
+
+            st.info(
+                f"Timbang **{D:.4f} g** analit, "
+                f"larutkan dan encerkan hingga volume akhir **{B:.3f} L**."
+            )
 
     st.markdown("---")
     if st.button("⬅️ Kembali ke Halaman Utama"):
         st.session_state.page = "home"
         st.rerun()
+
 
 
 # ==============================
