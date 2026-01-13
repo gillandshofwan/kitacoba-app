@@ -1,19 +1,21 @@
 import streamlit as st
 import pandas as pd
 
-# Data jadwal harian
-data = {
-    "Waktu": ["06.00–07.00", "08.00–10.00", "12.00–13.00", "14.00–16.00", "19.00–21.00"],
-    "Kegiatan": [
-        "Olahraga & persiapan",
-        "Kuliah",
-        "Istirahat",
-        "Belajar / Tugas",
-        "Waktu pribadi"
-    ]
-}
+st.title("Jadwal Kegiatan")
 
-df = pd.DataFrame(data)
+# Data awal tabel
+df = pd.DataFrame({
+    "Hari": ["Senin", "Senin", "Selasa"],
+    "Waktu": ["08.00–10.00", "13.00–15.00", "09.00–11.00"],
+    "Nama Kegiatan": ["Kuliah", "Belajar Mandiri", "Praktikum"]
+})
 
-st.title("Jadwal Harian")
-st.table(df)
+# Tabel editable
+jadwal = st.data_editor(
+    df,
+    num_rows="dynamic",
+    use_container_width=True
+)
+
+st.subheader("Jadwal Tersimpan")
+st.table(jadwal)
