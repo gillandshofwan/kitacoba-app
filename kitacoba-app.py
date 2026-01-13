@@ -1,15 +1,9 @@
+
 import streamlit as st
 from numpy.random import default_rng as rng
 
 df = pd.DataFrame(
-    rng(0).standard_normal((12, 5)), columns=["a", "b", "c", "d", "e"]
+    rng(0).standard_normal((50, 20)), columns=("col %d" % i for i in range(20))
 )
 
-event = st.dataframe(
-    df,
-    key="data",
-    on_select="rerun",
-    selection_mode=["multi-row", "multi-column", "multi-cell"],
-)
-
-event.selection
+st.dataframe(df)
