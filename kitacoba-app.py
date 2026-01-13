@@ -1,9 +1,19 @@
-
 import streamlit as st
-from numpy.random import default_rng as rng
+import pandas as pd
 
-df = pd.DataFrame(
-    rng(0).standard_normal((50, 20)), columns=("col %d" % i for i in range(20))
-)
+# Data jadwal harian
+data = {
+    "Waktu": ["06.00–07.00", "08.00–10.00", "12.00–13.00", "14.00–16.00", "19.00–21.00"],
+    "Kegiatan": [
+        "Olahraga & persiapan",
+        "Kuliah",
+        "Istirahat",
+        "Belajar / Tugas",
+        "Waktu pribadi"
+    ]
+}
 
-st.dataframe(df)
+df = pd.DataFrame(data)
+
+st.title("Jadwal Harian")
+st.table(df)
