@@ -7,27 +7,75 @@ st.title("Jadwal Laboratorium")
 # Data jadwal tiap lab
 # =========================
 jadwal_lab = {
-    "Lab Kimia": pd.DataFrame({
-        "Hari": ["Senin", "Rabu", "Jumat"],
-        "Waktu": ["08.00–10.00", "13.00–15.00", "09.00–11.00"],
-        "Nama Kegiatan": ["Praktikum Dasar", "Penelitian", "Praktikum Lanjut"]
+    "Lab Organik": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["07:30 - 17:30", "", "", "12:30 - 17:30", ""],
+        "Kegiatan": ["Praktik kelas 1G", "", "", "Praktik kelas 2A", ""]
+    }),
+
+    "Lab Analitik": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["", "07:30 - 17:30", "", "", "07:30 - 12:30"],
+        "Kegiatan": ["", "Praktik kelas 2E1", "", "", "Praktik kelas 2F"]
+    }),
+
+    "Lab Lingkungan": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["07:30 - 17:30", "", "07:30 - 12:30", "12:30 - 17:30", ""],
+        "Kegiatan": [
+            "Praktik kelas 1D",
+            "",
+            "Praktik kelas 2F",
+            "Praktik kelas 2A",
+            ""
+        ]
+    }),
+
+    "Lab Instrumen": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["07:30 - 17:30", "", "", "12:30 - 17:30", "07:30 - 17:30"],
+        "Kegiatan": [
+            "Praktik kelas 1G",
+            "",
+            "",
+            "Praktik kelas 2G",
+            "Praktik kelas 1B"
+        ]
+    }),
+
+    "Lab Mikro": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["", "", "07:30 - 17:30", "12:30 - 17:30", ""],
+        "Kegiatan": ["", "", "Praktik kelas 1E", "Praktik kelas 2A", ""]
     }),
 
     "Lab Fisika": pd.DataFrame({
-        "Hari": ["Selasa", "Kamis"],
-        "Waktu": ["08.00–10.00", "13.00–15.00"],
-        "Nama Kegiatan": ["Eksperimen Mekanika", "Eksperimen Listrik"]
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": [
+            "07:30 - 17:30",
+            "07:30 - 17:30",
+            "07:30 - 17:30",
+            "12:30 - 17:30",
+            ""
+        ],
+        "Kegiatan": [
+            "Praktik kelas 1G",
+            "Praktik kelas 2C",
+            "Praktik kelas 1D",
+            "Praktik kelas 2A",
+            ""
+        ]
     }),
 
-    "Lab Biologi": pd.DataFrame({
-        "Hari": ["Senin", "Kamis"],
-        "Waktu": ["10.00–12.00", "08.00–10.00"],
-        "Nama Kegiatan": ["Praktikum Mikrobiologi", "Kultur Sel"]
+    "Lab Teknologi": pd.DataFrame({
+        "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+        "Jam": ["", "07:30 - 17:30", "", "07:30 - 17:30", ""],
+        "Kegiatan": ["", "Praktik kelas 1G", "", "Praktik kelas 2C", ""]
     })
 }
 
 # =========================
-# Pilih laboratorium
+# Pilih lab
 # =========================
 lab_dipilih = st.selectbox(
     "Pilih Laboratorium",
@@ -35,7 +83,7 @@ lab_dipilih = st.selectbox(
 )
 
 # =========================
-# Tampilkan jadwal
+# Tampilkan jadwal (read-only)
 # =========================
 st.subheader(f"Jadwal {lab_dipilih}")
 st.dataframe(
