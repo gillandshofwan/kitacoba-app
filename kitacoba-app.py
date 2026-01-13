@@ -1,47 +1,27 @@
 import streamlit as st
 import pandas as pd
 
-st.title("Jadwal Kegiatan Mingguan (Senin–Jumat)")
+st.title("Jadwal Kegiatan (Editable oleh Pengguna)")
 
-# Data awal jadwal
+# Data awal
 df = pd.DataFrame({
-    "Hari": [
-        "Senin", "Senin",
-        "Selasa", "Selasa",
-        "Rabu",
-        "Kamis",
-        "Jumat"
-    ],
-    "Waktu": [
-        "08.00–10.00", "13.00–15.00",
-        "09.00–11.00", "14.00–16.00",
-        "08.00–10.00",
-        "10.00–12.00",
-        "13.00–15.00"
-    ],
-    "Nama Kegiatan": [
-        "Kuliah",
-        "Belajar Mandiri",
-        "Praktikum",
-        "Diskusi Kelompok",
-        "Kuliah",
-        "Belajar",
-        "Review Materi"
-    ]
+    "Hari": ["Senin", "Selasa", "Rabu", "Kamis", "Jumat"],
+    "Waktu": ["08.00–10.00", "09.00–11.00", "10.00–12.00", "13.00–15.00", "08.00–10.00"],
+    "Nama Kegiatan": ["Kuliah", "Praktikum", "Belajar", "Diskusi", "Review Materi"]
 })
 
-# Tabel jadwal editable
+# Tabel editable
 jadwal = st.data_editor(
     df,
+    num_rows="dynamic",              # bisa tambah & hapus baris
+    use_container_width=True,
     column_config={
         "Hari": st.column_config.SelectboxColumn(
             "Hari",
             options=["Senin", "Selasa", "Rabu", "Kamis", "Jumat"]
         )
-    },
-    num_rows="dynamic",
-    use_container_width=True
+    }
 )
 
-st.subheader("Jadwal Tersimpan")
+st.subheader("Hasil Edit Jadwal")
 st.table(jadwal)
